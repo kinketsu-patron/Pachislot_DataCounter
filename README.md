@@ -1,0 +1,2 @@
+# Pachislot_DataCounter
+パチスロ実機のデータカウンター

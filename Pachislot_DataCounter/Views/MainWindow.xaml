@@ -220,76 +220,15 @@
                 <!--======================================-->
                 <!--スランプグラフ                        -->
                 <!--======================================-->
-                <ContentControl
-                        Grid.Row="3"
+        <ContentControl Grid.Row="3"
                         Grid.Column="5"
                         Grid.RowSpan="4"
                         Grid.ColumnSpan="3"
                         HorizontalAlignment="Stretch"
                         VerticalAlignment="Stretch"
                         Content="{Binding SlumpGraph}" />
-                <!--<lvc:CartesianChart 
-                        Grid.Row="3"
-                        Grid.Column="5"
-                        Grid.RowSpan="4"
-                        Grid.ColumnSpan="3"
-                        HorizontalAlignment="Stretch"
-                        VerticalAlignment="Stretch"
-                        LegendLocation="None">
-                        -->
-                <!--凡例-->
-                <!--
-                        <lvc:CartesianChart.Series>
-                                <lvc:LineSeries Values="{ Binding CoinDiff }"
-                                                PointGeometry="{x:Null}"
-                                                StrokeThickness="4"
-                                                Stroke="Red"
-                                                Fill="Transparent"/>
-                        </lvc:CartesianChart.Series>
-                        -->
-                <!--X軸-->
-                <!--
-                        <lvc:CartesianChart.AxisX>
-                                <lvc:Axis 
-                                        Title="ゲーム数"
-                                        IsMerged="False"
-                                        Foreground="Azure"
-                                        FontSize="16"
-                                        FontFamily="BIZ UDゴシック"
-                                        MinValue="0"
-                                        MaxValue="{Binding Max_X}">
-                                        <lvc:Axis.Separator>
-                                                <lvc:Separator
-                                                        Stroke="Goldenrod"
-                                                        StrokeThickness="1"
-                                                        StrokeDashArray="2"/>
-                                        </lvc:Axis.Separator>
-                                </lvc:Axis>
-                        </lvc:CartesianChart.AxisX>
-                        -->
-                <!--Y軸-->
-                <!--
-                        <lvc:CartesianChart.AxisY>
-                                <lvc:Axis
-                                        Title="差枚数"
-                                        IsMerged="False"
-                                        Foreground="Azure"
-                                        FontSize="16"
-                                        FontFamily="BIZ UDゴシック"
-                                        MinValue="{Binding Min_Y}"
-                                        MaxValue="{Binding Max_Y}">
-                                        <lvc:Axis.Separator>
-                                                <lvc:Separator
-                                                        Stroke="Goldenrod"
-                                                        StrokeThickness="1"
-                                                        StrokeDashArray="2"/>
-                                        </lvc:Axis.Separator>
-                                </lvc:Axis>
-                        </lvc:CartesianChart.AxisY>
-                </lvc:CartesianChart>-->
-                <!--#endregion-->
 
-                <!--#region ボーナス履歴-->
+        <!--#region ボーナス履歴-->
                 <!--======================================-->
                 <!--ボーナス履歴                          -->
                 <!--======================================-->

@@ -144,8 +144,6 @@
                 </Resource>
         </ItemGroup>
         <ItemGroup>
-                <Compile Update="Models\SerialCom.cs">
-                        <SubType>Component</SubType>
-                </Compile>
+                <Compile Update="Models\SerialCom.cs" />
         </ItemGroup>
 </Project>

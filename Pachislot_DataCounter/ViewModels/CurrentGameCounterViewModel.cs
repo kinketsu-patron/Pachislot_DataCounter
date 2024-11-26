@@ -60,6 +60,14 @@ namespace Pachislot_DataCounter.ViewModels
             get { return m_NumCounter.FirstDigit; }
             set { m_NumCounter.FirstDigit = value; }
         }
+        /// <summary>
+        /// ビッグボーナス中フラグ
+        /// </summary>
+        public bool DuringBonus
+        {
+            get { return m_DataManager.DuringBonus; }
+            set { m_DataManager.DuringBonus = value; }
+        }
 
         // =======================================================
         // コンストラクタ
@@ -72,13 +80,17 @@ namespace Pachislot_DataCounter.ViewModels
         public CurrentGameCounterViewModel( NumCounter p_NumCounter, DataManager p_DataManager )
         {
             m_NumCounter = p_NumCounter;
+            m_NumCounter.PropertyChanged += ( sender, e ) => RaisePropertyChanged( e.PropertyName );
             m_DataManager = p_DataManager;
-
             m_DataManager.PropertyChanged += ( sender, e ) =>
             {
                 if ( e.PropertyName == "CurrentGame" )
                 {
                     m_NumCounter.SetNumber( m_DataManager.CurrentGame );
+                }
+                if ( e.PropertyName == "DuringBonus" )
+                {
+                    RaisePropertyChanged( e.PropertyName );
                 }
             };
         }

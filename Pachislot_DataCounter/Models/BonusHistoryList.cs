@@ -1,18 +1,33 @@
-﻿using Pachislot_DataCounter.Models.Entity;
+﻿/**
+ * =============================================================
+ * File         :BonusHistoryList.cs
+ * Summary      :ボーナス履歴リストクラス
+ * Author       :kinketsu patron (https://kinketsu-patron.com)
+ * Ver          :1.0
+ * Date         :2024/11/26
+ * =============================================================
+ */
+
+// =======================================================
+// using
+// =======================================================
+using Pachislot_DataCounter.Models.Entity;
 using Prism.Mvvm;
-using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Media.Imaging;
 
 namespace Pachislot_DataCounter.Models
 {
     public class BonusHistoryList : BindableBase
     {
+        private enum BonusType
+        {
+            BIG_BONUS,
+            REGULAR_BONUS,
+            NONE
+        }
+
         // =======================================================
         // メンバ変数
         // =======================================================
@@ -24,11 +39,11 @@ namespace Pachislot_DataCounter.Models
         /// <summary>
         /// 現在のゲーム数に合わせたバー表示リスト
         /// </summary>
-        public ObservableCollection<GamesBar> CurrentGameBar { get; set; }
+        public List<GamesBar> CurrentGameBar { get; set; }
         /// <summary>
         /// 1回前から10回前のボーナス履歴のバー表示リスト
         /// </summary>
-        public ObservableCollection<GamesBar> BonusHistory { get; set; }
+        public List<GamesBar> BonusHistory { get; set; }
 
         // =======================================================
         // コンストラクタ
@@ -40,7 +55,7 @@ namespace Pachislot_DataCounter.Models
         {
             m_DataManager = p_DataManager;
 
-            CurrentGameBar = new ObservableCollection<GamesBar>( );
+            CurrentGameBar = new List<GamesBar>( );
             CurrentGameBar.Add( new GamesBar
             {
                 Bar_Ten = Visibility.Hidden,
@@ -58,7 +73,7 @@ namespace Pachislot_DataCounter.Models
                 Games = 0
             } );
 
-            BonusHistory = new ObservableCollection<GamesBar>( );
+            BonusHistory = new List<GamesBar>( );
             for ( int i = 0; i < 10; i++ )
             {
                 BonusHistory.Add( new GamesBar
@@ -73,7 +88,7 @@ namespace Pachislot_DataCounter.Models
                     Bar_Three = Visibility.Hidden,
                     Bar_Two = Visibility.Hidden,
                     Bar_One = Visibility.Visible,
-                    TimesAgo = ( i + 1 ) + "回前",
+                    TimesAgo = i + 1 + "回前",
                     KindOfBonus = "NONE",
                     Games = 0
                 } );
@@ -84,7 +99,17 @@ namespace Pachislot_DataCounter.Models
                 if ( e.PropertyName == "CurrentGame" )
                 {
                     update_currentgames( m_DataManager.CurrentGame );
-                    RaisePropertyChanged( );
+                    RaisePropertyChanged( "CurrentGameBar" );
+                }
+                if ( e.PropertyName == "DuringRB" && m_DataManager.DuringRB == false )
+                {
+                    update_bonushistory( BonusType.REGULAR_BONUS );
+                    RaisePropertyChanged( "BonusHistory" );
+                }
+                if ( e.PropertyName == "DuringBB" && m_DataManager.DuringBB == false )
+                {
+                    update_bonushistory( BonusType.BIG_BONUS );
+                    RaisePropertyChanged( "BonusHistory" );
                 }
             };
         }
@@ -111,8 +136,7 @@ namespace Pachislot_DataCounter.Models
                 CurrentGameBar[ 0 ].Bar_Three = Visibility.Hidden;
                 CurrentGameBar[ 0 ].Bar_Two = Visibility.Hidden;
                 CurrentGameBar[ 0 ].Bar_One = Visibility.Visible;
-            }
-            else if ( 100 <= p_GameCount && p_GameCount < 200 )
+            } else if ( 100 <= p_GameCount && p_GameCount < 200 )
             {
                 CurrentGameBar[ 0 ].Bar_Ten = Visibility.Hidden;
                 CurrentGameBar[ 0 ].Bar_Nine = Visibility.Hidden;
@@ -124,8 +148,7 @@ namespace Pachislot_DataCounter.Models
                 CurrentGameBar[ 0 ].Bar_Three = Visibility.Hidden;
                 CurrentGameBar[ 0 ].Bar_Two = Visibility.Visible;
                 CurrentGameBar[ 0 ].Bar_One = Visibility.Visible;
-            }
-            else if ( 200 <= p_GameCount && p_GameCount < 300 )
+            } else if ( 200 <= p_GameCount && p_GameCount < 300 )
             {
                 CurrentGameBar[ 0 ].Bar_Ten = Visibility.Hidden;
                 CurrentGameBar[ 0 ].Bar_Nine = Visibility.Hidden;
@@ -137,8 +160,7 @@ namespace Pachislot_DataCounter.Models
                 CurrentGameBar[ 0 ].Bar_Three = Visibility.Visible;
                 CurrentGameBar[ 0 ].Bar_Two = Visibility.Visible;
                 CurrentGameBar[ 0 ].Bar_One = Visibility.Visible;
-            }
-            else if ( 300 <= p_GameCount && p_GameCount < 400 )
+            } else if ( 300 <= p_GameCount && p_GameCount < 400 )
             {
                 CurrentGameBar[ 0 ].Bar_Ten = Visibility.Hidden;
                 CurrentGameBar[ 0 ].Bar_Nine = Visibility.Hidden;
@@ -150,8 +172,7 @@ namespace Pachislot_DataCounter.Models
                 CurrentGameBar[ 0 ].Bar_Three = Visibility.Visible;
                 CurrentGameBar[ 0 ].Bar_Two = Visibility.Visible;
                 CurrentGameBar[ 0 ].Bar_One = Visibility.Visible;
-            }
-            else if ( 400 <= p_GameCount && p_GameCount < 500 )
+            } else if ( 400 <= p_GameCount && p_GameCount < 500 )
             {
                 CurrentGameBar[ 0 ].Bar_Ten = Visibility.Hidden;
                 CurrentGameBar[ 0 ].Bar_Nine = Visibility.Hidden;
@@ -163,8 +184,7 @@ namespace Pachislot_DataCounter.Models
                 CurrentGameBar[ 0 ].Bar_Three = Visibility.Visible;
                 CurrentGameBar[ 0 ].Bar_Two = Visibility.Visible;
                 CurrentGameBar[ 0 ].Bar_One = Visibility.Visible;
-            }
-            else if ( 500 <= p_GameCount && p_GameCount < 600 )
+            } else if ( 500 <= p_GameCount && p_GameCount < 600 )
             {
                 CurrentGameBar[ 0 ].Bar_Ten = Visibility.Hidden;
                 CurrentGameBar[ 0 ].Bar_Nine = Visibility.Hidden;
@@ -176,8 +196,7 @@ namespace Pachislot_DataCounter.Models
                 CurrentGameBar[ 0 ].Bar_Three = Visibility.Visible;
                 CurrentGameBar[ 0 ].Bar_Two = Visibility.Visible;
                 CurrentGameBar[ 0 ].Bar_One = Visibility.Visible;
-            }
-            else if ( 600 <= p_GameCount && p_GameCount < 700 )
+            } else if ( 600 <= p_GameCount && p_GameCount < 700 )
             {
                 CurrentGameBar[ 0 ].Bar_Ten = Visibility.Hidden;
                 CurrentGameBar[ 0 ].Bar_Nine = Visibility.Hidden;
@@ -189,8 +208,7 @@ namespace Pachislot_DataCounter.Models
                 CurrentGameBar[ 0 ].Bar_Three = Visibility.Visible;
                 CurrentGameBar[ 0 ].Bar_Two = Visibility.Visible;
                 CurrentGameBar[ 0 ].Bar_One = Visibility.Visible;
-            }
-            else if ( 700 <= p_GameCount && p_GameCount < 800 )
+            } else if ( 700 <= p_GameCount && p_GameCount < 800 )
             {
                 CurrentGameBar[ 0 ].Bar_Ten = Visibility.Hidden;
                 CurrentGameBar[ 0 ].Bar_Nine = Visibility.Hidden;
@@ -202,8 +220,7 @@ namespace Pachislot_DataCounter.Models
                 CurrentGameBar[ 0 ].Bar_Three = Visibility.Visible;
                 CurrentGameBar[ 0 ].Bar_Two = Visibility.Visible;
                 CurrentGameBar[ 0 ].Bar_One = Visibility.Visible;
-            }
-            else if ( 800 <= p_GameCount && p_GameCount < 900 )
+            } else if ( 800 <= p_GameCount && p_GameCount < 900 )
             {
                 CurrentGameBar[ 0 ].Bar_Ten = Visibility.Hidden;
                 CurrentGameBar[ 0 ].Bar_Nine = Visibility.Visible;
@@ -215,8 +232,7 @@ namespace Pachislot_DataCounter.Models
                 CurrentGameBar[ 0 ].Bar_Three = Visibility.Visible;
                 CurrentGameBar[ 0 ].Bar_Two = Visibility.Visible;
                 CurrentGameBar[ 0 ].Bar_One = Visibility.Visible;
-            }
-            else
+            } else
             {
                 CurrentGameBar[ 0 ].Bar_Ten = Visibility.Visible;
                 CurrentGameBar[ 0 ].Bar_Nine = Visibility.Visible;
@@ -230,19 +246,19 @@ namespace Pachislot_DataCounter.Models
                 CurrentGameBar[ 0 ].Bar_One = Visibility.Visible;
             }
         }
-
         /// <summary>
         /// ボーナス終了時に呼び出されてBonusHistoryの中のBonusHistoryVisibleオブジェクトをシフトする
         /// </summary>
-        private void UpdateBonusHistory( string p_Bonus )
+        /// <param name="p_BonusType">ボーナス種別</param>
+        private void update_bonushistory( BonusType p_BonusType )
         {
             BonusHistory.Remove( BonusHistory.Last( ) );
-            switch ( p_Bonus )
+            switch ( p_BonusType )
             {
-                case "REGULAR_BONUS":
+                case BonusType.REGULAR_BONUS:
                     CurrentGameBar[ 0 ].KindOfBonus = "RB";
                     break;
-                case "BIG_BONUS":
+                case BonusType.BIG_BONUS:
                     CurrentGameBar[ 0 ].KindOfBonus = "BB";
                     break;
                 default:

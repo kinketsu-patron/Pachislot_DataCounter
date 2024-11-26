@@ -49,14 +49,7 @@ namespace Pachislot_DataCounter
             p_ContainerRegistry.Register<NumCounter>( );
             p_ContainerRegistry.Register<SerialPort>( );
             p_ContainerRegistry.Register<BonusHistoryList>( );
-            //p_ContainerRegistry.RegisterForNavigation<AllGameCounter, AllGameCounterViewModel>( );
-            //p_ContainerRegistry.RegisterForNavigation<BBCounter, BBCounterViewModel>( );
-            //p_ContainerRegistry.RegisterForNavigation<CurrentGameCounter, CurrentGameCounterViewModel>( );
-            //p_ContainerRegistry.RegisterForNavigation<InCoinCounter, InCoinCounterViewModel>( );
-            //p_ContainerRegistry.RegisterForNavigation<OutCoinCounter, OutCoinCounterViewModel>( );
-            //p_ContainerRegistry.RegisterForNavigation<RBCounter, RBCounterViewModel>( );
-            //p_ContainerRegistry.RegisterForNavigation<BonusHistory, BonusHistoryViewModel>( );
-            //p_ContainerRegistry.RegisterForNavigation<SlumpGraph, SlumpGraphViewModel>( );
+            p_ContainerRegistry.Register<GraphDrawer>( );
         }
 
         /// <summary>

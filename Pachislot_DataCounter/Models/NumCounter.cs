@@ -149,8 +149,7 @@ namespace Pachislot_DataCounter.Models
                 SecondDigit = null;
                 FirstDigit = m_NumDictionary[ abs_number ];
                 Sign = p_Number < 0 ? create_bitmap_image( "pack://application:,,,/Resource/数字/数字(Sign).png" ) : null;
-            }
-            else if ( abs_number >= 10 && abs_number < 100 )
+            } else if ( abs_number >= 10 && abs_number < 100 )
             {
                 SixthDigit = null;
                 FifthDigit = null;
@@ -160,8 +159,7 @@ namespace Pachislot_DataCounter.Models
                 temp = abs_number % 10;
                 FirstDigit = m_NumDictionary[ temp ];
                 Sign = p_Number < 0 ? create_bitmap_image( "pack://application:,,,/Resource/数字/数字(Sign).png" ) : null;
-            }
-            else if ( abs_number >= 100 && abs_number < 1000 )
+            } else if ( abs_number >= 100 && abs_number < 1000 )
             {
                 SixthDigit = null;
                 FifthDigit = null;
@@ -172,8 +170,7 @@ namespace Pachislot_DataCounter.Models
                 temp = abs_number % 10;
                 FirstDigit = m_NumDictionary[ temp ];
                 Sign = p_Number < 0 ? create_bitmap_image( "pack://application:,,,/Resource/数字/数字(Sign).png" ) : null;
-            }
-            else if ( abs_number >= 1000 && abs_number < 10000 )
+            } else if ( abs_number >= 1000 && abs_number < 10000 )
             {
                 SixthDigit = null;
                 FifthDigit = null;
@@ -185,8 +182,7 @@ namespace Pachislot_DataCounter.Models
                 temp = abs_number % 10;
                 FirstDigit = m_NumDictionary[ temp ];
                 Sign = p_Number < 0 ? create_bitmap_image( "pack://application:,,,/Resource/数字/数字(Sign).png" ) : null;
-            }
-            else if ( abs_number >= 10000 && abs_number < 100000 )
+            } else if ( abs_number >= 10000 && abs_number < 100000 )
             {
                 SixthDigit = null;
                 FifthDigit = m_NumDictionary[ abs_number / 10000 ];
@@ -199,8 +195,7 @@ namespace Pachislot_DataCounter.Models
                 temp = abs_number % 10;
                 FirstDigit = m_NumDictionary[ temp ];
                 Sign = p_Number < 0 ? create_bitmap_image( "pack://application:,,,/Resource/数字/数字(Sign).png" ) : null;
-            }
-            else if ( abs_number >= 100000 && abs_number < 1000000 )
+            } else if ( abs_number >= 100000 && abs_number < 1000000 )
             {
                 SixthDigit = m_NumDictionary[ abs_number / 100000 ];
                 temp = abs_number % 100000;
@@ -214,8 +209,7 @@ namespace Pachislot_DataCounter.Models
                 temp = abs_number % 10;
                 FirstDigit = m_NumDictionary[ temp ];
                 Sign = p_Number < 0 ? create_bitmap_image( "pack://application:,,,/Resource/数字/数字(Sign).png" ) : null;
-            }
-            else
+            } else
             {
                 SixthDigit = m_NumDictionary[ 9 ];
                 FirstDigit = m_NumDictionary[ 9 ];
@@ -246,8 +240,7 @@ namespace Pachislot_DataCounter.Models
                 img.UriSource = new Uri( p_FilePath, UriKind.Absolute );
                 img.EndInit( );
                 img.Freeze( );
-            }
-            catch ( Exception e )
+            } catch ( Exception e )
             {
                 Debug.WriteLine( e.Message );
             }

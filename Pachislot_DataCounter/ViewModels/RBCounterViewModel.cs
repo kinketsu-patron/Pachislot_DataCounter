@@ -13,12 +13,6 @@
 // =======================================================
 using Pachislot_DataCounter.Models;
 using Prism.Mvvm;
-using Reactive.Bindings;
-using Reactive.Bindings.Disposables;
-using Reactive.Bindings.Extensions;
-using System;
-using System.Collections.Generic;
-using System.Diagnostics;
 using System.Windows.Media.Imaging;
 
 namespace Pachislot_DataCounter.ViewModels
@@ -58,6 +52,14 @@ namespace Pachislot_DataCounter.ViewModels
             get { return m_NumCounter.FirstDigit; }
             set { m_NumCounter.FirstDigit = value; }
         }
+        /// <summary>
+        /// レギュラーボーナス中フラグ
+        /// </summary>
+        public bool DuringRB
+        {
+            get { return m_DataManager.DuringRB; }
+            set { m_DataManager.DuringRB = value; }
+        }
 
         // =======================================================
         // コンストラクタ
@@ -70,13 +72,17 @@ namespace Pachislot_DataCounter.ViewModels
         public RBCounterViewModel( NumCounter p_NumCounter, DataManager p_DataManager )
         {
             m_NumCounter = p_NumCounter;
+            m_NumCounter.PropertyChanged += ( sender, e ) => RaisePropertyChanged( e.PropertyName );
             m_DataManager = p_DataManager;
-
             m_DataManager.PropertyChanged += ( sender, e ) =>
             {
                 if ( e.PropertyName == "RegularBonus" )
                 {
                     m_NumCounter.SetNumber( m_DataManager.RegularBonus );
+                }
+                if ( e.PropertyName == "DuringRB" )
+                {
+                    RaisePropertyChanged( e.PropertyName );
                 }
             };
         }

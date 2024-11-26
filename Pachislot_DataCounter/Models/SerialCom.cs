@@ -85,8 +85,7 @@ namespace Pachislot_DataCounter.Models
                     {
                         m_DataManager.Store( gameInfo );
                     } );
-                }
-                catch ( Exception ex )
+                } catch ( Exception ex )
                 {
                     MessageBox.Show( ex.Message );
                 }
@@ -106,8 +105,7 @@ namespace Pachislot_DataCounter.Models
                 //m_SerialPort.PortName = SelectedPort;
                 m_SerialPort.PortName = "COM4";
                 m_SerialPort.Open( );
-            }
-            catch
+            } catch
             {
                 throw;
             }
@@ -123,24 +121,10 @@ namespace Pachislot_DataCounter.Models
                 {
                     m_SerialPort.Close( );
                 }
-            }
-            catch
+            } catch
             {
                 throw;
             }
-        }
-
-        // =======================================================
-        // 非公開メソッド
-        // =======================================================
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void MessageReceived( object sender, SerialDataReceivedEventArgs e )
-        {
-
         }
     }
 }

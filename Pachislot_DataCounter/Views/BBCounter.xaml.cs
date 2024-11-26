@@ -2,14 +2,14 @@
 
 namespace Pachislot_DataCounter.Views
 {
-        /// <summary>
-        /// Interaction logic for BBCounter.xaml
-        /// </summary>
-        public partial class BBCounter : UserControl
+    /// <summary>
+    /// Interaction logic for BBCounter.xaml
+    /// </summary>
+    public partial class BBCounter : UserControl
+    {
+        public BBCounter( )
         {
-                public BBCounter( )
-                {
-                        InitializeComponent( );
-                }
+            InitializeComponent( );
         }
+    }
 }

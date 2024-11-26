@@ -2,14 +2,14 @@
 
 namespace Pachislot_DataCounter.Views
 {
-        /// <summary>
-        /// Interaction logic for BonusHistory
-        /// </summary>
-        public partial class BonusHistory : UserControl
+    /// <summary>
+    /// Interaction logic for BonusHistory
+    /// </summary>
+    public partial class BonusHistory : UserControl
+    {
+        public BonusHistory( )
         {
-                public BonusHistory( )
-                {
-                        InitializeComponent( );
-                }
+            InitializeComponent( );
         }
+    }
 }

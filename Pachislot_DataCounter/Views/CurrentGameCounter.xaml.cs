@@ -2,14 +2,14 @@
 
 namespace Pachislot_DataCounter.Views
 {
-        /// <summary>
-        /// Interaction logic for CurrentGameCounter.xaml
-        /// </summary>
-        public partial class CurrentGameCounter : UserControl
+    /// <summary>
+    /// Interaction logic for CurrentGameCounter.xaml
+    /// </summary>
+    public partial class CurrentGameCounter : UserControl
+    {
+        public CurrentGameCounter( )
         {
-                public CurrentGameCounter( )
-                {
-                        InitializeComponent( );
-                }
+            InitializeComponent( );
         }
+    }
 }

@@ -16,6 +16,7 @@ using Pachislot_DataCounter.Views;
 using Prism.Ioc;
 using Prism.Modularity;
 using Prism.Unity;
+using System.IO.Ports;
 using System.Threading;
 using System.Windows;
 
@@ -46,6 +47,8 @@ namespace Pachislot_DataCounter
         {
             p_ContainerRegistry.RegisterSingleton<DataManager>( );
             p_ContainerRegistry.Register<NumCounter>( );
+            p_ContainerRegistry.Register<SerialPort>( );
+            p_ContainerRegistry.Register<BonusHistoryList>( );
             //p_ContainerRegistry.RegisterForNavigation<AllGameCounter, AllGameCounterViewModel>( );
             //p_ContainerRegistry.RegisterForNavigation<BBCounter, BBCounterViewModel>( );
             //p_ContainerRegistry.RegisterForNavigation<CurrentGameCounter, CurrentGameCounterViewModel>( );

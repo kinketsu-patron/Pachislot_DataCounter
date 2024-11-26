@@ -1,4 +1,17 @@
-﻿using Prism.Mvvm;
+﻿/**
+ * =============================================================
+ * File         :NumCounter.cs
+ * Summary      :数値⇒数字画像変換クラス
+ * Author       :kinketsu patron (https://kinketsu-patron.com)
+ * Ver          :1.0
+ * Date         :2024/11/26
+ * =============================================================
+ */
+
+// =======================================================
+// using
+// =======================================================
+using Prism.Mvvm;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -8,11 +21,17 @@ namespace Pachislot_DataCounter.Models
 {
     public class NumCounter : BindableBase
     {
+        // =======================================================
+        // メンバ変数
+        // =======================================================
         /// <summary>
         /// 数字と数字画像の1対1の対応付けを行うディクショナリ
         /// </summary>
         private Dictionary<uint, BitmapImage> m_NumDictionary;
 
+        // =======================================================
+        // プロパティ
+        // =======================================================
         /// <summary>
         /// 符号
         /// </summary>
@@ -77,6 +96,12 @@ namespace Pachislot_DataCounter.Models
             set { SetProperty( ref m_FirstDigit, value ); }
         }
 
+        // =======================================================
+        // コンストラクタ
+        // =======================================================
+        /// <summary>
+        /// コンストラクタ
+        /// </summary>
         public NumCounter( )
         {
             m_NumDictionary = new Dictionary<uint, BitmapImage>
@@ -101,6 +126,9 @@ namespace Pachislot_DataCounter.Models
             FirstDigit = m_NumDictionary[ 0 ];
         }
 
+        // =======================================================
+        // 公開メソッド
+        // =======================================================
         /// <summary>
         /// 整数型の数値を設定すると適切に数値画像を選択する
         /// </summary>
@@ -121,7 +149,8 @@ namespace Pachislot_DataCounter.Models
                 SecondDigit = null;
                 FirstDigit = m_NumDictionary[ abs_number ];
                 Sign = p_Number < 0 ? create_bitmap_image( "pack://application:,,,/Resource/数字/数字(Sign).png" ) : null;
-            } else if ( abs_number >= 10 && abs_number < 100 )
+            }
+            else if ( abs_number >= 10 && abs_number < 100 )
             {
                 SixthDigit = null;
                 FifthDigit = null;
@@ -131,7 +160,8 @@ namespace Pachislot_DataCounter.Models
                 temp = abs_number % 10;
                 FirstDigit = m_NumDictionary[ temp ];
                 Sign = p_Number < 0 ? create_bitmap_image( "pack://application:,,,/Resource/数字/数字(Sign).png" ) : null;
-            } else if ( abs_number >= 100 && abs_number < 1000 )
+            }
+            else if ( abs_number >= 100 && abs_number < 1000 )
             {
                 SixthDigit = null;
                 FifthDigit = null;
@@ -142,7 +172,8 @@ namespace Pachislot_DataCounter.Models
                 temp = abs_number % 10;
                 FirstDigit = m_NumDictionary[ temp ];
                 Sign = p_Number < 0 ? create_bitmap_image( "pack://application:,,,/Resource/数字/数字(Sign).png" ) : null;
-            } else if ( abs_number >= 1000 && abs_number < 10000 )
+            }
+            else if ( abs_number >= 1000 && abs_number < 10000 )
             {
                 SixthDigit = null;
                 FifthDigit = null;
@@ -154,7 +185,8 @@ namespace Pachislot_DataCounter.Models
                 temp = abs_number % 10;
                 FirstDigit = m_NumDictionary[ temp ];
                 Sign = p_Number < 0 ? create_bitmap_image( "pack://application:,,,/Resource/数字/数字(Sign).png" ) : null;
-            } else if ( abs_number >= 10000 && abs_number < 100000 )
+            }
+            else if ( abs_number >= 10000 && abs_number < 100000 )
             {
                 SixthDigit = null;
                 FifthDigit = m_NumDictionary[ abs_number / 10000 ];
@@ -167,7 +199,8 @@ namespace Pachislot_DataCounter.Models
                 temp = abs_number % 10;
                 FirstDigit = m_NumDictionary[ temp ];
                 Sign = p_Number < 0 ? create_bitmap_image( "pack://application:,,,/Resource/数字/数字(Sign).png" ) : null;
-            } else if ( abs_number >= 100000 && abs_number < 1000000 )
+            }
+            else if ( abs_number >= 100000 && abs_number < 1000000 )
             {
                 SixthDigit = m_NumDictionary[ abs_number / 100000 ];
                 temp = abs_number % 100000;
@@ -181,7 +214,8 @@ namespace Pachislot_DataCounter.Models
                 temp = abs_number % 10;
                 FirstDigit = m_NumDictionary[ temp ];
                 Sign = p_Number < 0 ? create_bitmap_image( "pack://application:,,,/Resource/数字/数字(Sign).png" ) : null;
-            } else
+            }
+            else
             {
                 SixthDigit = m_NumDictionary[ 9 ];
                 FirstDigit = m_NumDictionary[ 9 ];
@@ -193,6 +227,9 @@ namespace Pachislot_DataCounter.Models
             }
         }
 
+        // =======================================================
+        // 非公開メソッド
+        // =======================================================
         /// <summary>
         /// 数字画像のパスを指定するとBitmapImageクラスのインスタンスにして返す
         /// </summary>
@@ -209,7 +246,8 @@ namespace Pachislot_DataCounter.Models
                 img.UriSource = new Uri( p_FilePath, UriKind.Absolute );
                 img.EndInit( );
                 img.Freeze( );
-            } catch ( Exception e )
+            }
+            catch ( Exception e )
             {
                 Debug.WriteLine( e.Message );
             }

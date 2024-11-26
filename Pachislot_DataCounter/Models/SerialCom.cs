@@ -11,6 +11,7 @@
 // =======================================================
 // using
 // =======================================================
+using Pachislot_DataCounter.Models.Entity;
 using Prism.Mvvm;
 using System;
 using System.Collections.Generic;
@@ -23,11 +24,15 @@ namespace Pachislot_DataCounter.Models
 {
     public class SerialCom : BindableBase
     {
-        #region メンバ変数
+        // =======================================================
+        // メンバ変数
+        // =======================================================
         private SerialPort m_SerialPort;
-        #endregion
+        private DataManager m_DataManager;
 
-        #region プロパティ
+        // =======================================================
+        // プロパティ
+        // =======================================================
         private List<string> m_PortList = new List<string>();
         public List<string> PortList
         {
@@ -41,15 +46,17 @@ namespace Pachislot_DataCounter.Models
             get { return m_SelectedPort; }
             set { SetProperty( ref m_SelectedPort, value ); }
         }
-        #endregion
 
-        #region 公開メソッド
+        // =======================================================
+        // コンストラクタ
+        // =======================================================
         /// <summary>
         /// コンストラクタ
         /// </summary>
-        public SerialCom( )
+        public SerialCom( SerialPort p_SerialPort, DataManager p_DataManager )
         {
-            m_SerialPort = new SerialPort( );
+            m_DataManager = p_DataManager;
+            m_SerialPort = p_SerialPort;
             m_SerialPort.BaudRate = 115200;
             m_SerialPort.DataBits = 8;
             m_SerialPort.Parity = Parity.None;
@@ -63,9 +70,32 @@ namespace Pachislot_DataCounter.Models
             //    PortList.Add( port );
             //}
             //SelectedPort = PortList.FirstOrDefault( );
-            m_SerialPort.DataReceived += MessageReceived;
+
+            m_SerialPort.DataReceived += ( sender, e ) =>
+            {
+                string message;
+                GameInfo gameInfo = null;
+
+                try
+                {
+                    message = m_SerialPort.ReadLine( );
+                    gameInfo = JsonSerializer.Deserialize<GameInfo>( message );
+
+                    Application.Current.Dispatcher.Invoke( ( ) =>
+                    {
+                        m_DataManager.Store( gameInfo );
+                    } );
+                }
+                catch ( Exception ex )
+                {
+                    MessageBox.Show( ex.Message );
+                }
+            };
         }
 
+        // =======================================================
+        // 公開メソッド
+        // =======================================================
         /// <summary>
         /// 通信スタート
         /// </summary>
@@ -76,12 +106,12 @@ namespace Pachislot_DataCounter.Models
                 //m_SerialPort.PortName = SelectedPort;
                 m_SerialPort.PortName = "COM4";
                 m_SerialPort.Open( );
-            } catch
+            }
+            catch
             {
                 throw;
             }
         }
-
         /// <summary>
         /// 通信ストップ
         /// </summary>
@@ -93,31 +123,24 @@ namespace Pachislot_DataCounter.Models
                 {
                     m_SerialPort.Close( );
                 }
-            } catch
+            }
+            catch
             {
                 throw;
             }
         }
 
+        // =======================================================
+        // 非公開メソッド
+        // =======================================================
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void MessageReceived( object sender, SerialDataReceivedEventArgs e )
         {
-            string message;
-            GameInfo gameInfo = null;
 
-            try
-            {
-                message = m_SerialPort.ReadLine( );
-                gameInfo = JsonSerializer.Deserialize<GameInfo>( message );
-
-                Application.Current.Dispatcher.Invoke( ( ) =>
-                {
-                    m_DataManager.Store( gameInfo );
-                } );
-            } catch ( Exception ex )
-            {
-                MessageBox.Show( ex.Message );
-            }
         }
-        #endregion
     }
 }

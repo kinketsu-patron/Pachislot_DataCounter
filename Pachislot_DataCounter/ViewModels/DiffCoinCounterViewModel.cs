@@ -19,10 +19,12 @@ namespace Pachislot_DataCounter.ViewModels
 {
     public class DiffCoinCounterViewModel : BindableBase
     {
+        // =======================================================
+        // メンバ変数
+        // =======================================================
         private NumCounter m_NumCounter;
         private DataManager m_DataManager;
 
-        #region プロパティ
         // =======================================================
         // プロパティ
         // =======================================================
@@ -74,11 +76,15 @@ namespace Pachislot_DataCounter.ViewModels
             get { return m_NumCounter.FirstDigit; }
             set { m_NumCounter.FirstDigit = value; }
         }
-        #endregion
 
+        // =======================================================
+        // コンストラクタ
+        // =======================================================
         /// <summary>
         /// コンストラクタ
         /// </summary>
+        /// <param name="p_NumCounter">DIコンテナ内のNumCounterオブジェクト</param>
+        /// <param name="p_DataManager">DIコンテナ内のDataManagerオブジェクト</param>
         public DiffCoinCounterViewModel( NumCounter p_NumCounter, DataManager p_DataManager )
         {
             m_NumCounter = p_NumCounter;

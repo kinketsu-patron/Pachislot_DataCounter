@@ -11,36 +11,34 @@
 // =======================================================
 // using
 // =======================================================
+using Pachislot_DataCounter.Models.Entity;
 using Prism.Mvvm;
 
 namespace Pachislot_DataCounter.Models
 {
     public class DataManager : BindableBase
     {
-        #region メンバ変数
         // =======================================================
         // メンバ変数
         // =======================================================
-        private uint m_BigBonus;
-        private uint m_RegularBonus;
-        private uint m_AllGame;
-        private uint m_CurrentGame;
-        private uint m_InCoin;
-        private uint m_OutCoin;
+        private int m_BigBonus;
+        private int m_RegularBonus;
+        private int m_AllGame;
+        private int m_CurrentGame;
+        private int m_InCoin;
+        private int m_OutCoin;
         private int m_DiffCoin;
         private bool m_DuringRB;
         private bool m_DuringBB;
         private bool m_DuringBonus;
-        #endregion
 
-        #region プロパティ
         // =======================================================
         // プロパティ
         // =======================================================
         /// <summary>
         /// ビッグボーナス回数
         /// </summary>
-        public uint BigBonus
+        public int BigBonus
         {
             get { return m_BigBonus; }
             set { SetProperty( ref m_BigBonus, value ); }
@@ -48,7 +46,7 @@ namespace Pachislot_DataCounter.Models
         /// <summary>
         /// レギュラーボーナス回数
         /// </summary>
-        public uint RegularBonus
+        public int RegularBonus
         {
             get { return m_RegularBonus; }
             set { SetProperty( ref m_RegularBonus, value ); }
@@ -56,7 +54,7 @@ namespace Pachislot_DataCounter.Models
         /// <summary>
         /// 累計ゲーム数
         /// </summary>
-        public uint AllGame
+        public int AllGame
         {
             get { return m_AllGame; }
             set { SetProperty( ref m_AllGame, value ); }
@@ -64,7 +62,7 @@ namespace Pachislot_DataCounter.Models
         /// <summary>
         /// 現在のゲーム数
         /// </summary>
-        public uint CurrentGame
+        public int CurrentGame
         {
             get { return m_CurrentGame; }
             set { SetProperty( ref m_CurrentGame, value ); }
@@ -72,7 +70,7 @@ namespace Pachislot_DataCounter.Models
         /// <summary>
         /// IN枚数
         /// </summary>
-        public uint InCoin
+        public int InCoin
         {
             get { return m_InCoin; }
             set { SetProperty( ref m_InCoin, value ); }
@@ -80,7 +78,7 @@ namespace Pachislot_DataCounter.Models
         /// <summary>
         /// OUT枚数
         /// </summary>
-        public uint OutCoin
+        public int OutCoin
         {
             get { return m_OutCoin; }
             set { SetProperty( ref m_OutCoin, value ); }
@@ -117,9 +115,7 @@ namespace Pachislot_DataCounter.Models
             get { return m_DuringBonus; }
             set { SetProperty( ref m_DuringBonus, value ); }
         }
-        #endregion
 
-        #region 公開メソッド
         /// <summary>
         /// コンストラクタ
         /// </summary>
@@ -131,7 +127,7 @@ namespace Pachislot_DataCounter.Models
             CurrentGame = 0;
             InCoin = 0;
             OutCoin = 0;
-            Diff = 0;
+            DiffCoin = 0;
             DuringRB = false;
             DuringBB = false;
             DuringBonus = false;
@@ -152,10 +148,9 @@ namespace Pachislot_DataCounter.Models
             AllGame = p_GameInfo.TotalGame;
             InCoin = p_GameInfo.In;
             OutCoin = p_GameInfo.Out;
-            Diff = p_GameInfo.Diff;
+            DiffCoin = p_GameInfo.Diff;
             RegularBonus = p_GameInfo.RB;
             BigBonus = p_GameInfo.BB;
         }
-        #endregion
     }
 }

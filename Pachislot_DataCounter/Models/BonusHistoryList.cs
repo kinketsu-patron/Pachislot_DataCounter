@@ -21,6 +21,9 @@ namespace Pachislot_DataCounter.Models
 {
     public class BonusHistoryList : BindableBase
     {
+        // =======================================================
+        // 列挙型
+        // =======================================================
         private enum BonusType
         {
             BIG_BONUS,
@@ -51,6 +54,7 @@ namespace Pachislot_DataCounter.Models
         /// <summary>
         /// コンストラクタ
         /// </summary>
+        /// <param name="p_DataManager">データ管理クラスオブジェクト</param>
         public BonusHistoryList( DataManager p_DataManager )
         {
             m_DataManager = p_DataManager;
@@ -120,6 +124,7 @@ namespace Pachislot_DataCounter.Models
         /// <summary>
         /// ゲーム数が更新されたときに現在ゲーム数のバー表示も更新する
         /// </summary>
+        /// <param name="p_GameCount">現在のゲーム数</param>
         private void update_currentgames( int p_GameCount )
         {
             CurrentGameBar[ 0 ].Games = p_GameCount;

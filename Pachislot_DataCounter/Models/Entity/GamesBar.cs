@@ -1,10 +1,10 @@
 ﻿/**
  * =============================================================
- * File         :BonusHistoryVisible.cs
- * Summary      :ボーナス履歴表示クラス
+ * File         :GamesBar.cs
+ * Summary      :ゲーム数バー表示エンティティクラス
  * Author       :kinketsu patron (https://kinketsu-patron.com)
  * Ver          :1.0
- * Date         :2024/07/19
+ * Date         :2024/11/26
  * =============================================================
  */
 
@@ -35,6 +35,9 @@ namespace Pachislot_DataCounter.Models.Entity
         private string m_KindOfBonus;
         private int m_Games;
 
+        // =======================================================
+        // プロパティ
+        // =======================================================
         public Visibility Bar_Ten
         {
             get { return m_Bar_Ten; }
@@ -113,6 +116,9 @@ namespace Pachislot_DataCounter.Models.Entity
             set { SetProperty( ref m_Games, value ); }
         }
 
+        // =======================================================
+        // 公開メソッド
+        // =======================================================
         /// <summary>
         /// クローンインスタンスを生成する
         /// </summary>

@@ -1,7 +1,7 @@
 ﻿/**
  * =============================================================
  * File         :AllGameCounterViewModel.cs
- * Summary      :AllGameCounterViewModelのビューモデル
+ * Summary      :AllGameCounterのビューモデル
  * Author       :kinketsu patron (https://kinketsu-patron.com)
  * Ver          :1.0
  * Date         :2024/07/05

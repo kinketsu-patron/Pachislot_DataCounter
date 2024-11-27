@@ -1,7 +1,7 @@
 ﻿/**
  * =============================================================
  * File         :BonusHistoryViewModel.cs
- * Summary      :BonusHistoryViewModelのビューモデル
+ * Summary      :BonusHistoryのビューモデル
  * Author       :kinketsu patron (https://kinketsu-patron.com)
  * Ver          :1.0
  * Date         :2024/07/15

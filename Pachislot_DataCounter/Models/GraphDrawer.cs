@@ -1,4 +1,17 @@
-﻿using Prism.Mvvm;
+﻿/**
+ * =============================================================
+ * File         :GraphDrawer.cs
+ * Summary      :グラフ描画クラス
+ * Author       :kinketsu patron (https://kinketsu-patron.com)
+ * Ver          :1.0
+ * Date         :2024/11/26
+ * =============================================================
+ */
+
+// =======================================================
+// using
+// =======================================================
+using Prism.Mvvm;
 using ScottPlot;
 using ScottPlot.WPF;
 using System.Collections.Generic;
@@ -8,6 +21,9 @@ namespace Pachislot_DataCounter.Models
 {
     public class GraphDrawer : BindableBase
     {
+        // =======================================================
+        // メンバ変数
+        // =======================================================
         private DataManager m_DataManager;
         private List<int> m_GamesList;
         private List<int> m_CoinDiffList;
@@ -16,7 +32,6 @@ namespace Pachislot_DataCounter.Models
         // プロパティ
         // =======================================================
         public WpfPlot ScottPlot { set; get; }
-
 
         // =======================================================
         // コンストラクタ
@@ -34,6 +49,12 @@ namespace Pachislot_DataCounter.Models
             };
         }
 
+        // =======================================================
+        // 非公開メソッド
+        // =======================================================
+        /// <summary>
+        /// グラフ設定
+        /// </summary>
         private void setting_graph( )
         {
             ScottPlot = new WpfPlot( );
@@ -97,6 +118,11 @@ namespace Pachislot_DataCounter.Models
             ScottPlot.Refresh( );
         }
 
+        /// <summary>
+        /// 新しい点をグラフにプロットして描画
+        /// </summary>
+        /// <param name="p_Game">新しい点の累計ゲーム数</param>
+        /// <param name="p_CoinDiff">差枚数</param>
         private void draw_graph( int p_Game, int p_CoinDiff )
         {
             m_GamesList.Add( p_Game );

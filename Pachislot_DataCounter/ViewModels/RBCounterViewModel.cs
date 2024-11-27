@@ -1,7 +1,7 @@
 ﻿/**
  * =============================================================
  * File         :RBCounterViewModel.cs
- * Summary      :RBCounterViewModelのビューモデル
+ * Summary      :RBCounterのビューモデル
  * Author       :kinketsu patron (https://kinketsu-patron.com)
  * Ver          :1.0
  * Date         :2024/07/05

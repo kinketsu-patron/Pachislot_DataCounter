@@ -1,7 +1,7 @@
 ﻿/**
  * =============================================================
  * File         :DiffCoinCounterViewModel.cs
- * Summary      :DiffCoinCounterViewModelのビューモデル
+ * Summary      :DiffCoinCounterのビューモデル
  * Author       :kinketsu patron (https://kinketsu-patron.com)
  * Ver          :1.0
  * Date         :2024/11/21

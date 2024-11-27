@@ -88,8 +88,8 @@ namespace Pachislot_DataCounter.ViewModels
         public DiffCoinCounterViewModel( NumCounter p_NumCounter, DataManager p_DataManager )
         {
             m_NumCounter = p_NumCounter;
+            m_NumCounter.PropertyChanged += ( sender, e ) => RaisePropertyChanged( e.PropertyName );
             m_DataManager = p_DataManager;
-
             m_DataManager.PropertyChanged += ( sender, e ) =>
             {
                 if ( e.PropertyName == "DiffCoin" )

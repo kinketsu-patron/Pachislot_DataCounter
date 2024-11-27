@@ -14,7 +14,7 @@
 using Pachislot_DataCounter.Models;
 using Pachislot_DataCounter.Models.Entity;
 using Prism.Mvvm;
-using System.Collections.Generic;
+using System.Collections.ObjectModel;
 
 namespace Pachislot_DataCounter.ViewModels
 {
@@ -31,7 +31,7 @@ namespace Pachislot_DataCounter.ViewModels
         /// <summary>
         /// 現在のゲーム数に合わせたバー表示リスト
         /// </summary>
-        public List<GamesBar> CurrentGameBar
+        public ObservableCollection<GamesBar> CurrentGameBar
         {
             get { return m_BonusHistoryList.CurrentGameBar; }
             set { m_BonusHistoryList.CurrentGameBar = value; }
@@ -39,7 +39,7 @@ namespace Pachislot_DataCounter.ViewModels
         /// <summary>
         /// 1回前から10回前のボーナス履歴のバー表示リスト
         /// </summary>
-        public List<GamesBar> BonusHistory
+        public ObservableCollection<GamesBar> BonusHistory
         {
             get { return m_BonusHistoryList.BonusHistory; }
             set { m_BonusHistoryList.BonusHistory = value; }

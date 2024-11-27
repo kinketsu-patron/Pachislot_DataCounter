@@ -40,7 +40,7 @@
             <Style TargetType="StackPanel">
                 <Style.Triggers>
                     <!--Bonus中になったら点滅させる-->
-                    <DataTrigger Binding="{Binding DuringBonus.Value}"
+                    <DataTrigger Binding="{Binding DuringBonus}"
                                  Value="true">
                         <DataTrigger.EnterActions>
                             <BeginStoryboard Name="BeginBonus_Blink"

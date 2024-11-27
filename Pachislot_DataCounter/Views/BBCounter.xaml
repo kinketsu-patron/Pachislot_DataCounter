@@ -40,7 +40,7 @@
             <Style TargetType="StackPanel">
                 <Style.Triggers>
                     <!--BigBonus中になったら点滅させる-->
-                    <DataTrigger Binding="{Binding DuringBB.Value}"
+                    <DataTrigger Binding="{Binding DuringBB}"
                                  Value="true">
                         <DataTrigger.EnterActions>
                             <BeginStoryboard Name="BeginBB_Blink"

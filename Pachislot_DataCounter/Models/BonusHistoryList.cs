@@ -13,7 +13,7 @@
 // =======================================================
 using Pachislot_DataCounter.Models.Entity;
 using Prism.Mvvm;
-using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Windows;
 
@@ -39,11 +39,11 @@ namespace Pachislot_DataCounter.Models
         /// <summary>
         /// 現在のゲーム数に合わせたバー表示リスト
         /// </summary>
-        public List<GamesBar> CurrentGameBar { get; set; }
+        public ObservableCollection<GamesBar> CurrentGameBar { get; set; }
         /// <summary>
         /// 1回前から10回前のボーナス履歴のバー表示リスト
         /// </summary>
-        public List<GamesBar> BonusHistory { get; set; }
+        public ObservableCollection<GamesBar> BonusHistory { get; set; }
 
         // =======================================================
         // コンストラクタ
@@ -55,7 +55,7 @@ namespace Pachislot_DataCounter.Models
         {
             m_DataManager = p_DataManager;
 
-            CurrentGameBar = new List<GamesBar>( );
+            CurrentGameBar = new ObservableCollection<GamesBar>( );
             CurrentGameBar.Add( new GamesBar
             {
                 Bar_Ten = Visibility.Hidden,
@@ -73,7 +73,7 @@ namespace Pachislot_DataCounter.Models
                 Games = 0
             } );
 
-            BonusHistory = new List<GamesBar>( );
+            BonusHistory = new ObservableCollection<GamesBar>( );
             for ( int i = 0; i < 10; i++ )
             {
                 BonusHistory.Add( new GamesBar

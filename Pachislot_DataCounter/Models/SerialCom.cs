@@ -103,7 +103,7 @@ namespace Pachislot_DataCounter.Models
             try
             {
                 //m_SerialPort.PortName = SelectedPort;
-                m_SerialPort.PortName = "COM4";
+                m_SerialPort.PortName = "COM3";
                 m_SerialPort.Open( );
             } catch
             {

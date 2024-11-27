@@ -147,7 +147,7 @@
         <Image Grid.Row="1"
                Grid.Column="5"
                Margin="10"
-               Source="/Resource/IN枚数.png"
+               Source="/Resource/差枚数.png"
                HorizontalAlignment="Left" />
         <ContentControl Grid.Row="1"
                         Grid.Column="6"

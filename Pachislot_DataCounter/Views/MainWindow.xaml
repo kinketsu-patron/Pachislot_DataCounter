@@ -27,7 +27,7 @@
     <!--ウィンドウの背景画像                  -->
     <!--======================================-->
     <Window.Background>
-            <ImageBrush ImageSource="/Resource/Background.png" />
+        <ImageBrush ImageSource="/Resource/Background.png" />
     </Window.Background>
     <!--#endregion-->
 
@@ -49,18 +49,18 @@
 
         <!--行の定義-->
         <Grid.RowDefinitions>
-            <RowDefinition Height="50*"/>
-            <RowDefinition Height="50*"/>
-            <RowDefinition Height="50*"/>
-            <RowDefinition Height="70*"/>
-            <RowDefinition Height="50*"/>
-            <RowDefinition Height="50*"/>
-            <RowDefinition Height="70*"/>
-            <RowDefinition Height="50*"/>
-            <RowDefinition Height="50*"/>
-            <RowDefinition Height="57*"/>
-            <RowDefinition Height="100*"/>
-            <RowDefinition Height="60*"/>
+            <RowDefinition Height="50*" />
+            <RowDefinition Height="50*" />
+            <RowDefinition Height="50*" />
+            <RowDefinition Height="70*" />
+            <RowDefinition Height="50*" />
+            <RowDefinition Height="50*" />
+            <RowDefinition Height="70*" />
+            <RowDefinition Height="50*" />
+            <RowDefinition Height="50*" />
+            <RowDefinition Height="57*" />
+            <RowDefinition Height="100*" />
+            <RowDefinition Height="60*" />
         </Grid.RowDefinitions>
         <!--#endregion-->
 
@@ -130,7 +130,11 @@
                         VerticalAlignment="Center"
                         prism:RegionManager.RegionName="AllGameCounter" />
         <!--現在のゲーム数-->
-        <ContentControl HorizontalAlignment="Right"
+        <ContentControl Grid.Row="9"
+                        Grid.Column="1"
+                        Grid.RowSpan="2"
+                        Grid.ColumnSpan="3"
+                        HorizontalAlignment="Right"
                         VerticalAlignment="Center"
                         Height="130"
                         prism:RegionManager.RegionName="CurrentGameCounter" />
@@ -167,9 +171,13 @@
         <!--======================================-->
         <!--ボタン類                              -->
         <!--======================================-->
-        <StackPanel Grid.Row="1" Grid.Column="7" Grid.RowSpan="2" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center">
-            <Button 
-                    Command="{Binding Click_Connect}"
+        <StackPanel Grid.Row="1"
+                    Grid.Column="7"
+                    Grid.RowSpan="2"
+                    Orientation="Horizontal"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Center">
+            <Button Command="{Binding Click_Connect}"
                     Content="{iconPacks:Material Kind=Connection, Width=40, Height=40}"
                     Style="{StaticResource MahApps.Styles.Button.Circle}"
                     Foreground="{StaticResource MahApps.Brushes.Accent}"
@@ -216,7 +224,7 @@
                       Grid.ColumnSpan="3"
                       HorizontalScrollBarVisibility="Visible"
                       VerticalScrollBarVisibility="Disabled">
-            <ContentControl HorizontalAlignment="Left"
+            <ContentControl HorizontalAlignment="Right"
                             prism:RegionManager.RegionName="BonusHistory" />
         </ScrollViewer>
         <!--#endregion-->

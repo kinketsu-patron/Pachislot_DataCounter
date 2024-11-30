@@ -10,6 +10,8 @@
                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                    xmlns:local="clr-namespace:Pachislot_DataCounter.Views"
                    xmlns:prism="http://prismlibrary.com/"
+                   xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+                   xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
                    xmlns:metro="http://metro.mahapps.com/winfx/xaml/controls"
                    xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
                    prism:ViewModelLocator.AutoWireViewModel="True"
@@ -31,6 +33,10 @@
     </Window.Background>
     <!--#endregion-->
 
+    <Window.Resources>
+        <Thickness x:Key="ControlMargin">0 5 0 0</Thickness>
+    </Window.Resources>
+
     <!--#region ウィンドウ本体-->
     <Grid>
         <!--#region グリッドサイズ設定-->
@@ -51,8 +57,9 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="50*" />
             <RowDefinition Height="50*" />
+            <RowDefinition Height="10*" />
             <RowDefinition Height="50*" />
-            <RowDefinition Height="70*" />
+            <RowDefinition Height="60*" />
             <RowDefinition Height="50*" />
             <RowDefinition Height="50*" />
             <RowDefinition Height="70*" />
@@ -69,16 +76,17 @@
         <!--ビッグボーナスの回数                  -->
         <!--======================================-->
         <Image Grid.Row="1"
+               Grid.RowSpan="2"
                Grid.Column="1"
                Grid.ColumnSpan="3"
                Source="/Resource/飾り枠(セクション).png" />
-        <Image Grid.Row="2"
+        <Image Grid.Row="3"
                Grid.Column="1"
                Source="/Resource/BB.png"
                HorizontalAlignment="Left" />
-        <ContentControl Grid.Row="2"
-                        Grid.Column="2"
+        <ContentControl Grid.Row="3"
                         Grid.RowSpan="2"
+                        Grid.Column="2"
                         Grid.ColumnSpan="2"
                         HorizontalAlignment="Right"
                         VerticalAlignment="Center"
@@ -89,18 +97,18 @@
         <!--======================================-->
         <!--レギュラーボーナスの回数              -->
         <!--======================================-->
-        <Image Grid.Row="4"
+        <Image Grid.Row="5"
                Grid.Column="1"
                Grid.ColumnSpan="3"
                Source="/Resource/飾り枠(セクション).png" />
-        <Image Grid.Row="5"
+        <Image Grid.Row="6"
                Grid.Column="1"
                Source="/Resource/RB.png"
                HorizontalAlignment="Left" />
         <!--ユーザーコントロールのレギュラーボーナスカウンター-->
-        <ContentControl Grid.Row="5"
-                        Grid.Column="2"
+        <ContentControl Grid.Row="6"
                         Grid.RowSpan="2"
+                        Grid.Column="2"
                         Grid.ColumnSpan="2"
                         HorizontalAlignment="Right"
                         VerticalAlignment="Center"
@@ -111,28 +119,28 @@
         <!--======================================-->
         <!--ゲーム数(ボーナス間)と累計ゲーム数    -->
         <!--======================================-->
-        <Image Grid.Row="7"
+        <Image Grid.Row="8"
                Grid.Column="1"
                Grid.ColumnSpan="3"
                Source="/Resource/飾り枠(セクション).png" />
-        <Image Grid.Row="8"
+        <Image Grid.Row="9"
                Grid.Column="1"
                Source="/Resource/ゲーム数.png"
                HorizontalAlignment="Left" />
-        <Image Grid.Row="8"
+        <Image Grid.Row="9"
                Grid.Column="2"
                Source="/Resource/累計.png"
                HorizontalAlignment="Right" />
         <!--累計ゲーム数-->
-        <ContentControl Grid.Row="8"
+        <ContentControl Grid.Row="9"
                         Grid.Column="3"
                         HorizontalAlignment="Right"
                         VerticalAlignment="Center"
                         prism:RegionManager.RegionName="AllGameCounter" />
         <!--現在のゲーム数-->
-        <ContentControl Grid.Row="9"
-                        Grid.Column="1"
+        <ContentControl Grid.Row="10"
                         Grid.RowSpan="2"
+                        Grid.Column="1"
                         Grid.ColumnSpan="3"
                         HorizontalAlignment="Right"
                         VerticalAlignment="Center"
@@ -145,30 +153,17 @@
         <!--差枚数                                -->
         <!--======================================-->
         <Image Grid.Row="1"
+               Grid.RowSpan="3"
                Grid.Column="5"
                Margin="10"
                Source="/Resource/差枚数.png"
                HorizontalAlignment="Left" />
         <ContentControl Grid.Row="1"
+                        Grid.RowSpan="3"
                         Grid.Column="6"
-                        Margin="5"
+                        Margin="0,35,0,35"
                         HorizontalAlignment="Right"
                         prism:RegionManager.RegionName="DiffCoinCounter" />
-        <!--#endregion-->
-
-        <!--#region シリアルポート選択-->
-        <!--======================================-->
-        <!--ポート選択                            -->
-        <!--======================================-->
-        <ComboBox Grid.Row="2"
-                  Grid.Column="6"
-                  Style="{ StaticResource MahApps.Styles.ComboBox }"
-                  Foreground="{StaticResource MahApps.Brushes.Accent}"
-                  BorderBrush="{StaticResource MahApps.Brushes.Accent}"
-                  Margin="5"
-                  HorizontalAlignment="Right"
-                  Width="240"
-                  Height="50" />
         <!--#endregion-->
 
         <!--#region ボタン-->
@@ -176,43 +171,67 @@
         <!--ボタン類                              -->
         <!--======================================-->
         <StackPanel Grid.Row="1"
-                    Grid.Column="7"
                     Grid.RowSpan="2"
+                    Grid.Column="7"
                     Orientation="Horizontal"
                     HorizontalAlignment="Right"
                     VerticalAlignment="Center">
-            <Button Command="{Binding Click_Connect}"
-                    Content="{iconPacks:Material Kind=Connection, Width=40, Height=40}"
-                    Style="{StaticResource MahApps.Styles.Button.Circle}"
-                    Foreground="{StaticResource MahApps.Brushes.Accent}"
-                    BorderBrush="{StaticResource MahApps.Brushes.Accent}"
-                    BorderThickness="3"
-                    Width="80"
-                    Height="80"
-                    Margin="0,0,30,0"
-                    ToolTip="Connect">
-            </Button>
+            <metro:Badged Badge="{Binding ConnectBadge}"
+                          BadgeMargin="10 0 10 0"
+                          Margin="{ StaticResource ControlMargin}"
+                          BadgeFontSize="20">
+                <ToggleButton Content="{iconPacks:Material Kind=Connection, Width=30, Height=30}"
+                        Style="{StaticResource MahApps.Styles.ToggleButton.Circle}"
+                        BorderThickness="3"
+                        Width="65"
+                        Height="65"
+                        ToolTip="Connect">
+                    <i:Interaction.Triggers>
+                        <i:EventTrigger EventName="Checked">
+                            <i:InvokeCommandAction Command="{Binding Checked_Connect}" />
+                        </i:EventTrigger>
+                        <i:EventTrigger EventName="Unchecked">
+                            <i:InvokeCommandAction Command="{Binding Unchecked_Connect}" />
+                        </i:EventTrigger>
+                    </i:Interaction.Triggers>
+                </ToggleButton>
+            </metro:Badged>
             <Button Command="{Binding Click_Exit}"
                     CommandParameter="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=local:MainWindow}}"
-                    Content="{iconPacks:Material Kind=ExitToApp, Width=40, Height=40}"
+                    Content="{iconPacks:Material Kind=ExitToApp, Width=30, Height=30}"
                     Style="{StaticResource MahApps.Styles.Button.Circle}"
-                    Foreground="{StaticResource MahApps.Brushes.Accent}"
-                    BorderBrush="{StaticResource MahApps.Brushes.Accent}"
                     BorderThickness="3"
-                    Width="80"
-                    Height="80"
+                    Width="65"
+                    Height="65"
+                    Margin="90,0,0,0"
                     ToolTip="Exit">
             </Button>
         </StackPanel>
+        <!--#endregion-->
+
+        <!--#region シリアルポート選択-->
+        <!--======================================-->
+        <!--ポート選択                            -->
+        <!--======================================-->
+        <ComboBox Grid.Row="3"
+                  Grid.Column="7"
+                  Margin="5"
+                  Style="{ StaticResource MaterialDesignOutlinedComboBox }"
+                  materialDesign:HintAssist.Hint="COMポート"
+                  FontFamily="トガリテ Heavy"
+                  ItemsSource="{Binding PortList}"
+                  SelectedItem="{Binding SelectedPort}"
+                  HorizontalAlignment="Right"
+                  Width="240" />
         <!--#endregion-->
 
         <!--#region スランプグラフ表示-->
         <!--======================================-->
         <!--スランプグラフ                        -->
         <!--======================================-->
-        <ContentControl Grid.Row="3"
-                        Grid.Column="5"
+        <ContentControl Grid.Row="4"
                         Grid.RowSpan="4"
+                        Grid.Column="5"
                         Grid.ColumnSpan="3"
                         HorizontalAlignment="Stretch"
                         VerticalAlignment="Stretch"
@@ -222,9 +241,9 @@
         <!--======================================-->
         <!--ボーナス履歴                          -->
         <!--======================================-->
-        <ScrollViewer Grid.Row="7"
-                      Grid.Column="5"
+        <ScrollViewer Grid.Row="8"
                       Grid.RowSpan="4"
+                      Grid.Column="5"
                       Grid.ColumnSpan="3"
                       HorizontalScrollBarVisibility="Visible"
                       VerticalScrollBarVisibility="Disabled"

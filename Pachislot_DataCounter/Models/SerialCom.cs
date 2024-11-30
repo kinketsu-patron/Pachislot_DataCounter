@@ -14,8 +14,9 @@
 using Pachislot_DataCounter.Models.Entity;
 using Prism.Mvvm;
 using System;
-using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.IO.Ports;
+using System.Linq;
 using System.Text;
 using System.Text.Json;
 using System.Windows;
@@ -33,8 +34,8 @@ namespace Pachislot_DataCounter.Models
         // =======================================================
         // プロパティ
         // =======================================================
-        private List<string> m_PortList = new List<string>();
-        public List<string> PortList
+        private ObservableCollection<string> m_PortList = new ObservableCollection<string>();
+        public ObservableCollection<string> PortList
         {
             get { return m_PortList; }
             set { SetProperty( ref m_PortList, value ); }
@@ -45,6 +46,12 @@ namespace Pachislot_DataCounter.Models
         {
             get { return m_SelectedPort; }
             set { SetProperty( ref m_SelectedPort, value ); }
+        }
+        private string m_ConnectBadge;
+        public string ConnectBadge
+        {
+            get { return m_ConnectBadge; }
+            set { SetProperty( ref m_ConnectBadge, value ); }
         }
 
         // =======================================================
@@ -65,11 +72,11 @@ namespace Pachislot_DataCounter.Models
             m_SerialPort.ReadTimeout = 5000;
             m_SerialPort.DtrEnable = true;
 
-            //foreach ( var port in SerialPort.GetPortNames( ) )
-            //{
-            //    PortList.Add( port );
-            //}
-            //SelectedPort = PortList.FirstOrDefault( );
+            foreach ( var port in SerialPort.GetPortNames( ) )
+            {
+                PortList.Add( port );
+            }
+            SelectedPort = PortList.FirstOrDefault( );
 
             m_SerialPort.DataReceived += ( sender, e ) =>
             {
@@ -102,9 +109,9 @@ namespace Pachislot_DataCounter.Models
         {
             try
             {
-                //m_SerialPort.PortName = SelectedPort;
-                m_SerialPort.PortName = "COM3";
+                m_SerialPort.PortName = SelectedPort;
                 m_SerialPort.Open( );
+                ConnectBadge = "接続中";
             } catch
             {
                 throw;
@@ -120,6 +127,7 @@ namespace Pachislot_DataCounter.Models
                 if ( m_SerialPort.IsOpen )
                 {
                     m_SerialPort.Close( );
+                    ConnectBadge = string.Empty;
                 }
             } catch
             {

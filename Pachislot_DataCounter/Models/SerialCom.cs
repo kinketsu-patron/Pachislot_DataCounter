@@ -86,7 +86,7 @@ namespace Pachislot_DataCounter.Models
                 try
                 {
                     message = m_SerialPort.ReadLine( );
-                    gameInfo = JsonSerializer.Deserialize<GameInfo>( message );
+                    gameInfo = JsonSerializer.Deserialize<GameInfo>( "message" );
 
                     Application.Current.Dispatcher.Invoke( ( ) =>
                     {
@@ -94,7 +94,7 @@ namespace Pachislot_DataCounter.Models
                     } );
                 } catch ( Exception ex )
                 {
-                    MessageBox.Show( ex.Message );
+                    MessageBox.Show( ex.Message, "エラー" );
                 }
             };
         }

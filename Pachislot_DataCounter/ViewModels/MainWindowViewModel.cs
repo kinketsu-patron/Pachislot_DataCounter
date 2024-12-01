@@ -11,7 +11,6 @@
 // =======================================================
 // using
 // =======================================================
-using MahApps.Metro.Controls;
 using MahApps.Metro.Controls.Dialogs;
 using Pachislot_DataCounter.Models;
 using Pachislot_DataCounter.Views;
@@ -20,7 +19,6 @@ using Prism.Mvvm;
 using Prism.Navigation.Regions;
 using System;
 using System.Collections.ObjectModel;
-using System.Windows;
 
 namespace Pachislot_DataCounter.ViewModels
 {
@@ -31,7 +29,7 @@ namespace Pachislot_DataCounter.ViewModels
         // =======================================================
         private SerialCom m_SerialCom;
         private DataManager m_DataManager;
-        private MetroWindow m_MetroWindow;
+        private readonly IDialogCoordinator m_DialogCoordinator;
 
         // =======================================================
         // コマンド
@@ -79,11 +77,11 @@ namespace Pachislot_DataCounter.ViewModels
         /// <summary>
         /// MainWindowのビューモデルのコンストラクタ
         /// </summary>
-        public MainWindowViewModel( IRegionManager p_RegionManager, SerialCom p_SerialCom, DataManager p_DataManager )
+        public MainWindowViewModel( IRegionManager p_RegionManager, IDialogCoordinator p_DialogCoordinator, SerialCom p_SerialCom, DataManager p_DataManager )
         {
-            m_MetroWindow = Application.Current.MainWindow as MetroWindow;
             m_DataManager = p_DataManager;
             m_SerialCom = p_SerialCom;
+            m_DialogCoordinator = p_DialogCoordinator;
 
             m_SerialCom.PropertyChanged += ( sender, e ) => RaisePropertyChanged( e.PropertyName );
 
@@ -106,27 +104,27 @@ namespace Pachislot_DataCounter.ViewModels
         /// <summary>
         /// 接続ボタンクリック(チェック)時の処理
         /// </summary>
-        private void checked_connect( )
+        private async void checked_connect( )
         {
             try
             {
                 m_SerialCom.ComStart( ); // シリアル通信を開始する
             } catch ( Exception ex )
             {
-                show_messagebox( "エラー", ex.Message );
+                await m_DialogCoordinator.ShowMessageAsync( this, "エラー", ex.Message );
             }
         }
         /// <summary>
         /// 接続ボタンクリック(チェック解除)時の処理
         /// </summary>
-        private void unchecked_connect( )
+        private async void unchecked_connect( )
         {
             try
             {
                 m_SerialCom.ComStop( ); // シリアル通信を停止する
             } catch ( Exception ex )
             {
-                show_messagebox( "エラー", ex.Message );
+                await m_DialogCoordinator.ShowMessageAsync( this, "エラー", ex.Message );
             }
         }
         /// <summary>
@@ -136,15 +134,6 @@ namespace Pachislot_DataCounter.ViewModels
         {
             m_SerialCom.ComStop( ); // シリアル通信を停止する
             p_Window?.Close( );     // nullでなければウィンドウを閉じる
-        }
-        /// <summary>
-        /// メッセージダイアログを表示
-        /// </summary>
-        /// <param name="p_Title">メッセージボックスタイトル</param>
-        /// <param name="p_Message">メッセージ</param>
-        private async void show_messagebox( string p_Title, string p_Message )
-        {
-            await m_MetroWindow.ShowMessageAsync( p_Title, p_Message );
         }
     }
 }

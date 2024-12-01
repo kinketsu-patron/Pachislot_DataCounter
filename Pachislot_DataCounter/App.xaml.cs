@@ -11,6 +11,7 @@
 // =======================================================
 // using
 // =======================================================
+using MahApps.Metro.Controls.Dialogs;
 using Pachislot_DataCounter.Models;
 using Pachislot_DataCounter.Views;
 using Prism.Ioc;
@@ -50,6 +51,7 @@ namespace Pachislot_DataCounter
             p_ContainerRegistry.Register<SerialPort>( );
             p_ContainerRegistry.Register<BonusHistoryList>( );
             p_ContainerRegistry.Register<GraphDrawer>( );
+            p_ContainerRegistry.Register<IDialogCoordinator, DialogCoordinator>( );
         }
 
         /// <summary>

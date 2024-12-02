@@ -86,7 +86,7 @@ namespace Pachislot_DataCounter.Models
                 try
                 {
                     message = m_SerialPort.ReadLine( );
-                    gameInfo = JsonSerializer.Deserialize<GameInfo>( "message" );
+                    gameInfo = JsonSerializer.Deserialize<GameInfo>( message );
 
                     Application.Current.Dispatcher.Invoke( ( ) =>
                     {

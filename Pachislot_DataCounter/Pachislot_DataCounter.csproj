@@ -5,13 +5,11 @@
                 <UseWPF>true</UseWPF>
                 <Platforms>AnyCPU;x64;x86</Platforms>
                 <Configurations>Debug;Release;test</Configurations>
-                <ApplicationIcon>favicon.ico</ApplicationIcon>
+                <ApplicationIcon>Resource\favicon.ico</ApplicationIcon>
         </PropertyGroup>
         <ItemGroup>
                 <None Remove="Resource\Background.png" />
                 <None Remove="Resource\BB.png" />
-                <None Remove="Resource\IN枚数.png" />
-                <None Remove="Resource\OUT枚数.png" />
                 <None Remove="Resource\RB.png" />
                 <None Remove="Resource\ゲーム数.png" />
                 <None Remove="Resource\データスランプ%28Bar%29_Green.png" />
@@ -22,7 +20,6 @@
                 <None Remove="Resource\データスランプ%28RB%29.png" />
                 <None Remove="Resource\完全勝利.mov" />
                 <None Remove="Resource\差枚数.png" />
-                <None Remove="Resource\接続.png" />
                 <None Remove="Resource\数字\数字%280%29.png" />
                 <None Remove="Resource\数字\数字%281%29.png" />
                 <None Remove="Resource\数字\数字%282%29.png" />
@@ -35,11 +32,10 @@
                 <None Remove="Resource\数字\数字%289%29.png" />
                 <None Remove="Resource\数字\数字%28Sign%29.png" />
                 <None Remove="Resource\累計.png" />
-                <None Remove="Resource\終了.png" />
                 <None Remove="Resource\飾り枠%28セクション%29.png" />
         </ItemGroup>
         <ItemGroup>
-                <Content Include="favicon.ico" />
+                <Content Include="Resource\favicon.ico" />
         </ItemGroup>
         <ItemGroup>
                 <Resource Include="Resource\データスランプ(NONE).png">
@@ -64,12 +60,6 @@
                 <Resource Include="Resource\BB.png">
                         <CopyToOutputDirectory>Never</CopyToOutputDirectory>
                 </Resource>
-                <Resource Include="Resource\IN枚数.png">
-                        <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-                </Resource>
-                <Resource Include="Resource\OUT枚数.png">
-                        <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-                </Resource>
                 <Resource Include="Resource\RB.png">
                         <CopyToOutputDirectory>Never</CopyToOutputDirectory>
                 </Resource>
@@ -92,9 +82,6 @@
                         <CopyToOutputDirectory>Never</CopyToOutputDirectory>
                 </Resource>
                 <Resource Include="Resource\差枚数.png">
-                        <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-                </Resource>
-                <Resource Include="Resource\接続.png">
                         <CopyToOutputDirectory>Never</CopyToOutputDirectory>
                 </Resource>
                 <Resource Include="Resource\数字\数字(0).png">
@@ -133,14 +120,22 @@
                 <Resource Include="Resource\累計.png">
                         <CopyToOutputDirectory>Never</CopyToOutputDirectory>
                 </Resource>
-                <Resource Include="Resource\終了.png">
-                        <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-                </Resource>
                 <Resource Include="Resource\飾り枠(セクション).png">
                         <CopyToOutputDirectory>Never</CopyToOutputDirectory>
                 </Resource>
         </ItemGroup>
         <ItemGroup>
                 <Compile Update="Models\SerialCom.cs" />
+                <Compile Update="Properties\Resources.Designer.cs">
+                  <DesignTime>True</DesignTime>
+                  <AutoGen>True</AutoGen>
+                  <DependentUpon>Resources.resx</DependentUpon>
+                </Compile>
+        </ItemGroup>
+        <ItemGroup>
+          <EmbeddedResource Update="Properties\Resources.resx">
+            <Generator>ResXFileCodeGenerator</Generator>
+            <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+          </EmbeddedResource>
         </ItemGroup>
 </Project>
